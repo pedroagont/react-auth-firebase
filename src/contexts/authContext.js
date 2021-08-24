@@ -33,7 +33,11 @@ function AuthProvider({ children }) {
     return firebaseAuth.signOut();
   }
 
-  const value = { currentUser, signup, login, logout };
+  function resetPassword(email) {
+    return firebaseAuth.sendPasswordResetEmail(email);
+  }
+
+  const value = { currentUser, signup, login, logout, resetPassword };
 
   return (
     <authContext.Provider value={ value }>
