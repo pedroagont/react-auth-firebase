@@ -37,7 +37,23 @@ function AuthProvider({ children }) {
     return firebaseAuth.sendPasswordResetEmail(email);
   }
 
-  const value = { currentUser, signup, login, logout, resetPassword };
+  function updateEmail(email) {
+    return currentUser.updateEmail(email)
+  }
+
+  function updatePassword(password) {
+    return currentUser.updatePassword(password)
+  }
+
+const value = {
+  currentUser,
+  signup,
+  login,
+  logout,
+  resetPassword,
+  updateEmail,
+  updatePassword
+};
 
   return (
     <authContext.Provider value={ value }>
