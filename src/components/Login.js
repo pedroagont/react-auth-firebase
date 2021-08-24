@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { currentUser, login } = useAuth();
+  const { login } = useAuth();
   const [ error, setError ] = useState('');
   const [ loading, setLoading ] = useState(false);
   const history = useHistory();
@@ -19,12 +19,10 @@ function Login() {
       setError('');
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      console.log(currentUser);
       history.push('/');
     } catch (e) {
       setError('' + e);
       setLoading(false);
-      console.log(e);
     }
   }
 
@@ -48,6 +46,9 @@ function Login() {
             Log In
           </Button>
         </Form>
+        <Card.Text className="text-muted text-center my-3">
+            <Link to="/forgot-password">Forgot password?</Link>
+        </Card.Text>
         <Card.Text className="text-muted text-center my-3">
             Need an account? <Link to="/signup">Sign Up</Link>
         </Card.Text>

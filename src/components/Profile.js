@@ -18,7 +18,6 @@ function Profile() {
     } catch (e) {
       setError('' + e);
       setLoading(false);
-      console.log(e);
     }
   }
 

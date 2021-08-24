@@ -8,7 +8,7 @@ function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
-  const { currentUser, signup } = useAuth();
+  const { signup } = useAuth();
   const [ error, setError ] = useState('');
   const [ loading, setLoading ] = useState(false);
   const history = useHistory();
@@ -24,12 +24,10 @@ function Signup() {
       setError('');
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
-      console.log(currentUser);
       history.push('/login');
     } catch (e) {
       setError('' + e);
       setLoading(false);
-      console.log(e);
     }
   }
 
