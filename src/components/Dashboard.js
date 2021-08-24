@@ -1,12 +1,12 @@
-import { useAuth } from '../contexts/authContext';
+import Profile from './Profile';
 
 function Dashboard() {
-  const { currentUser } = useAuth();
-
-  if(!currentUser) return <h1 className="display-1 text-center p-5">Hola desde el dashboard! 🕹</h1>
 
   return (
-    <h1 className="display-1 text-center p-5">Bienvenido { currentUser.email } 🥳</h1>
+    <>
+      <h2 className="display-4 text-center pt-5">My dashboard 🕹</h2>
+      <Profile />
+    </>
   );
 }
 
