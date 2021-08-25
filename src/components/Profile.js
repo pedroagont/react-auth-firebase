@@ -24,7 +24,11 @@ function Profile() {
   return (
     !loading && <Card className="w-75 mx-auto mt-5">
       <Card.Body>
-        <h1 className="display-4 text-center my-3">Profile</h1>
+        {
+          currentUser.displayName
+          ? <h1 className="display-4 text-center my-3">{ currentUser.displayName }</h1>
+          : <h1 className="display-4 text-center my-3">Profile</h1>
+        }
         { error && <Alert variant="danger">{error}</Alert> }
         <Card.Text className="lead text-center my-3">
             Email: { currentUser.email }
