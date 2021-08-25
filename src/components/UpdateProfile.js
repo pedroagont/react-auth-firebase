@@ -4,10 +4,11 @@ import { useAuth } from '../contexts/authContext';
 import { Link } from 'react-router-dom';
 
 function UpdateProfile() {
+  const newNameRef = useRef();
   const newEmailRef = useRef();
   const newPasswordRef = useRef();
   const confirmNewPasswordRef = useRef();
-  const { currentUser, updateEmail, updatePassword } = useAuth();
+  const { currentUser, updateName, updateEmail, updatePassword } = useAuth();
   const [ error, setError ] = useState('');
   const [ message, setMessage ] = useState('');
   const [ loading, setLoading ] = useState(false);
@@ -15,7 +16,7 @@ function UpdateProfile() {
   function handleSubmit(e) {
     e.preventDefault()
 
-    if (newEmailRef.current.value === '' && newPasswordRef.current.value === '') {
+    if (newNameRef.current.value === '' && newEmailRef.current.value === '' && newPasswordRef.current.value === '' ) {
       return setMessage('Nothing to change!');
     }
 
@@ -26,6 +27,10 @@ function UpdateProfile() {
     const promises = [];
     setError('');
     setLoading(true);
+
+    if (newNameRef.current.value !== '' && newNameRef.current.value !== currentUser.displayName) {
+      promises.push(updateName(newNameRef.current.value));
+    }
 
     if (newEmailRef.current.value !== '' && newEmailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(newEmailRef.current.value));
@@ -49,6 +54,11 @@ function UpdateProfile() {
         { error && <Alert variant="danger">{error}</Alert> }
         { message && <Alert variant="success">{message}</Alert> }
         <Form onSubmit={ handleSubmit }>
+          <Form.Group className="mb-3" controlId="formName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control type="text" placeholder="Leave blank to keep the same" ref={ newNameRef } autoComplete="off" />
+          </Form.Group>
+
           <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Leave blank to keep the same" ref={ newEmailRef } autoComplete="off" />

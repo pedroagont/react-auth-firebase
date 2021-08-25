@@ -45,6 +45,10 @@ function AuthProvider({ children }) {
     return currentUser.updatePassword(password)
   }
 
+  function updateName(name) {
+    return currentUser.updateProfile({ displayName: name })
+  }
+
 const value = {
   currentUser,
   signup,
@@ -52,7 +56,8 @@ const value = {
   logout,
   resetPassword,
   updateEmail,
-  updatePassword
+  updatePassword,
+  updateName
 };
 
   return (
