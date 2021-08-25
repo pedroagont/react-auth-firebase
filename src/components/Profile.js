@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/authContext';
-import { Alert, Card } from 'react-bootstrap';
+import { Alert, Button, Card } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 
 function Profile() {
@@ -26,14 +26,14 @@ function Profile() {
       <Card.Body>
         <h1 className="display-4 text-center my-3">Profile</h1>
         { error && <Alert variant="danger">{error}</Alert> }
-        <Card.Text className="text-center my-3">
+        <Card.Text className="lead text-center my-3">
             Email: { currentUser.email }
         </Card.Text>
-        <Link to="/update-profile" className="btn btn-primary w-100">
-          Update Profile
-        </Link>
+        <Button as={ Link } to="/update-profile" className="w-100" variant="primary">
+            Update Profile
+        </Button>
         <Card.Text className="text-muted text-center my-3">
-            <Link to="/signup" onClick={ handleLogout }>Log Out</Link>
+            <Link to="/signup" onClick={ handleLogout }>Log out</Link>
         </Card.Text>
       </Card.Body>
     </Card>

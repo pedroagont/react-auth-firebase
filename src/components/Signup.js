@@ -17,7 +17,7 @@ function Signup() {
     e.preventDefault();
 
     if(passwordRef.current.value !== confirmPasswordRef.current.value) {
-      return setError('Passwords no coinciden');
+      return setError('Passwords do not match!');
     }
 
     try {
@@ -39,7 +39,7 @@ function Signup() {
         <Form onSubmit={ handleSubmit }>
           <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" ref={emailRef} autoComplete="off" required />
+            <Form.Control type="email" placeholder="Enter email" ref={ emailRef } autoComplete="off" required />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formPassword">

@@ -1,8 +1,7 @@
 import { useRef, useState } from 'react';
 import { Alert, Form, Button, Card } from 'react-bootstrap';
 import { useAuth } from '../contexts/authContext';
-import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 function Login() {
   const emailRef = useRef();
@@ -29,12 +28,12 @@ function Login() {
   return (
     <Card className="w-75 mx-auto mt-5">
       <Card.Body>
-        <h1 className="display-4 text-center my-3">Log In</h1>
+        <h1 className="display-4 text-center my-3">Sign in</h1>
         { error && <Alert variant="danger">{error}</Alert> }
         <Form onSubmit={ handleSubmit }>
           <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" ref={emailRef} autoComplete="off" required />
+            <Form.Control type="email" placeholder="Enter email" ref={ emailRef } autoComplete="off" required />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formPassword">
@@ -43,14 +42,14 @@ function Login() {
           </Form.Group>
 
           <Button className="w-100" variant="primary" type="submit" disabled={ loading }>
-            Log In
+            Sign in
           </Button>
         </Form>
         <Card.Text className="text-muted text-center my-3">
             <Link to="/forgot-password">Forgot password?</Link>
         </Card.Text>
         <Card.Text className="text-muted text-center my-3">
-            Need an account? <Link to="/signup">Sign Up</Link>
+            Need an account? <Link to="/signup">Sign up</Link>
         </Card.Text>
       </Card.Body>
     </Card>

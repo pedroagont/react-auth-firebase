@@ -20,7 +20,7 @@ function UpdateProfile() {
     }
 
     if (newPasswordRef.current.value !== confirmNewPasswordRef.current.value) {
-      return setError('Passwords no coinciden');
+      return setError('Passwords do not match!');
     }
 
     const promises = [];
@@ -51,12 +51,12 @@ function UpdateProfile() {
         <Form onSubmit={ handleSubmit }>
           <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Leave blank to keep current email" ref={newEmailRef} autoComplete="off" />
+            <Form.Control type="email" placeholder="Leave blank to keep the same" ref={ newEmailRef } autoComplete="off" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Leave blank to keep current password" ref={ newPasswordRef } autoComplete="off" />
+            <Form.Control type="password" placeholder="Leave blank to keep the same" ref={ newPasswordRef } autoComplete="off" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formConfirmPassword">
@@ -65,7 +65,7 @@ function UpdateProfile() {
           </Form.Group>
 
           <Button className="w-100" variant="primary" type="submit" disabled={ loading }>
-            Update Profile
+            Save
           </Button>
         </Form>
         <Card.Text className="text-muted text-center my-3">
