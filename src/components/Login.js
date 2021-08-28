@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { currentUser, login } = useAuth();
   const [ error, setError ] = useState('');
   const [ loading, setLoading ] = useState(false);
   const history = useHistory();
@@ -23,6 +23,10 @@ function Login() {
       setError('' + e);
       setLoading(false);
     }
+  }
+
+  if(currentUser) {
+    history.push('/');
   }
 
   return (
