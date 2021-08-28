@@ -41,7 +41,7 @@ function UpdateProfile() {
     }
 
     Promise.all(promises)
-      .then(() => setMessage('Credentials changed!'))
+      .then(() => setMessage('Profile updated!'))
       .catch(e => setError('' + e))
       .finally(() => setLoading(false));
 
