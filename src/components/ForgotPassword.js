@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Alert, Button, Card, Form } from 'react-bootstrap';
 import { useAuth } from '../contexts/authContext';
 import { Link } from 'react-router-dom';
+import NavigationBar from './NavigationBar';
 
 function ForgotPassword() {
   const emailRef = useRef();
@@ -27,29 +28,32 @@ function ForgotPassword() {
   }
 
   return (
-    <Card className="w-75 mx-auto mt-5">
-      <Card.Body>
-        <h1 className="display-4 text-center my-3">Password Reset</h1>
-        { error && <Alert variant="danger">{error}</Alert> }
-        { message && <Alert variant="success">{message}</Alert> }
-        <Form onSubmit={ handleSubmit }>
-          <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" ref={emailRef} autoComplete="off" required />
-          </Form.Group>
+    <>
+      <NavigationBar />
+      <Card className="w-75 mx-auto mt-5">
+        <Card.Body>
+          <h1 className="display-4 text-center my-3">Password Reset</h1>
+          { error && <Alert variant="danger">{error}</Alert> }
+          { message && <Alert variant="success">{message}</Alert> }
+          <Form onSubmit={ handleSubmit }>
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control type="email" placeholder="Enter email" ref={emailRef} autoComplete="off" required />
+            </Form.Group>
 
-          <Button className="w-100" variant="primary" type="submit" disabled={ loading }>
-            Reset Password
-          </Button>
-        </Form>
-        <Card.Text className="text-muted text-center my-3">
+            <Button className="w-100" variant="primary" type="submit" disabled={ loading }>
+              Reset Password
+            </Button>
+          </Form>
+          <Card.Text className="text-muted text-center my-3">
             <Link to="/login">Login</Link>
-        </Card.Text>
-        <Card.Text className="text-muted text-center my-3">
+          </Card.Text>
+          <Card.Text className="text-muted text-center my-3">
             Need an account? <Link to="/signup">Sign Up</Link>
-        </Card.Text>
-      </Card.Body>
-    </Card>
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </>
   );
 }
 
