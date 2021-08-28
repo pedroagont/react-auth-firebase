@@ -6,7 +6,7 @@ function NavigationBar() {
   const { currentUser } = useAuth();
 
   return (
-    <Navbar bg="light" expand="sm">
+    <Navbar bg="primary" variant="dark" expand="sm">
       <Container>
         <Navbar.Brand as={ Link } to="/">My app 📲</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
