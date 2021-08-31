@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../contexts/authContext';
-import { Alert, Button, Card } from 'react-bootstrap';
+import { Alert, Button, Card, Image } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 
@@ -23,20 +23,25 @@ function Profile() {
   }
 
   return (
-    !loading && <>
+    <>
       <NavigationBar />
       <Card className="w-75 mx-auto mt-5">
         <Card.Body>
-            {
-              currentUser.displayName
-              ? <h1 className="display-4 text-center my-3">{ currentUser.displayName }</h1>
-              : <h1 className="display-4 text-center my-3">Profile</h1>
-            }
-            { error && <Alert variant="danger">{error}</Alert> }
-            <Card.Text className="lead text-center my-3">
-              Email: { currentUser.email }
-            </Card.Text>
-            <Button as={ Link } to="/update-profile" className="w-100" variant="primary">
+          {
+            !loading && currentUser.photoURL && <div style={{ width: '200px', height: '200px', margin: '0 auto'}}>
+                <Image style={{ objectFit: 'cover', objectPosition: 'center'}} className="w-100 h-100 border border-2 border-secondary p-1" src={ currentUser.photoURL } roundedCircle />
+              </div>
+          }
+          {
+            currentUser.displayName
+            ? <h1 className="display-4 text-center my-3">{ currentUser.displayName }</h1>
+            : <h1 className="display-4 text-center my-3">Profile</h1>
+          }
+          { error && <Alert variant="danger">{error}</Alert> }
+          <Card.Text className="lead text-center my-3">
+            Email: { currentUser.email }
+          </Card.Text>
+          <Button as={ Link } to="/update-profile" className="w-100" variant="primary">
             Update Profile
           </Button>
           <Card.Text className="text-muted text-center my-3">
