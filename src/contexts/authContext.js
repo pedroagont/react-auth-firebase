@@ -49,6 +49,10 @@ function AuthProvider({ children }) {
     return currentUser.updateProfile({ displayName: name })
   }
 
+  function updatePhoto(url) {
+    return currentUser.updateProfile({ photoURL: url })
+  }
+
 const value = {
   currentUser,
   signup,
@@ -57,7 +61,8 @@ const value = {
   resetPassword,
   updateEmail,
   updatePassword,
-  updateName
+  updateName,
+  updatePhoto
 };
 
   return (
