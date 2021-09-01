@@ -11,15 +11,8 @@ function useAuth() {
 }
 
 function AuthProvider({ children }) {
-  const [ currentUser, setCurrentUser ] = useState()
-  const [ loading, setLoading ] = useState(true)
-
-  useEffect(() => {
-    return firebaseAuth.onAuthStateChanged(user => {
-      setCurrentUser(user)
-      setLoading(false)
-    })
-  }, [])
+  const [ currentUser, setCurrentUser ] = useState();
+  const [ loading, setLoading ] = useState(true);
 
   function signup(email, password) {
     return firebaseAuth.createUserWithEmailAndPassword(email, password);
@@ -38,32 +31,40 @@ function AuthProvider({ children }) {
   }
 
   function updateEmail(email) {
-    return currentUser.updateEmail(email)
+    return currentUser.updateEmail(email);
   }
 
   function updatePassword(password) {
-    return currentUser.updatePassword(password)
+    return currentUser.updatePassword(password);
   }
 
   function updateName(name) {
-    return currentUser.updateProfile({ displayName: name })
+    return currentUser.updateProfile({ displayName: name });
   }
 
   function updatePhoto(url) {
-    return currentUser.updateProfile({ photoURL: url })
+    return currentUser.updateProfile({ photoURL: url });
   }
 
-const value = {
-  currentUser,
-  signup,
-  login,
-  logout,
-  resetPassword,
-  updateEmail,
-  updatePassword,
-  updateName,
-  updatePhoto
-};
+  useEffect(() => {
+    const observer = firebaseAuth.onAuthStateChanged(user => {
+      setCurrentUser(user);
+      setLoading(false);
+    })
+    return observer;
+  }, [])
+
+  const value = {
+    currentUser,
+    signup,
+    login,
+    logout,
+    resetPassword,
+    updateEmail,
+    updatePassword,
+    updateName,
+    updatePhoto
+  };
 
   return (
     <authContext.Provider value={ value }>
